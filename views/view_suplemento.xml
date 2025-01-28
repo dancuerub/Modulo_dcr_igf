@@ -1,16 +1,23 @@
 <odoo>
     <menuitem id="menu_suplementos_principal" name="Suplementación" sequence="10"/>
-
+    <!--
     <record id="action_suplemento_model" model="ir.actions.act_window">
         <field name="name">Suplementos</field>
         <field name="res_model">suplemento.model</field>
         <field name="view_mode">tree,form</field>
     </record>
+    -->
+
+    <record id="action_suplemento_multi_view" model="ir.actions.act_window">
+        <field name="name">Suplementos</field>
+        <field name="res_model">suplemento.model</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
     <!-- Submenú -->
     <menuitem id="menu_suplemento"
         name="Suplementos"
         parent="menu_suplementos_principal"
-        action="action_suplemento_model"
+        action="action_suplemento_multi_view"
         sequence="20"/>
 
     <!--Vista árbol-->
@@ -30,6 +37,35 @@
                 <field name="peso"/>
                 <field name="es_organico" widget="boolean_toggle"/>
             </tree>
+        </field>
+    </record>
+
+    <record id="view_suplemento_kanban" model="ir.ui.view">
+        <field name="name">suplemento.kanban</field>
+        <field name="model">suplemento.model</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="imagen"/>
+                <field name="precio"/>
+                <field name="fecha_vencimiento"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="imagen" widget="image" class="img-fluid"/>
+                            </div>
+                            <div class="o_kanban_details">
+                                <ul>
+                                    <li><strong t-esc="record.name.value"/></li>
+                                    <li>Precio: <span t-esc="record.precio.value"/> €</li>
+                                    <li>Fecha Vencimiento: <span t-esc="record.fecha_vencimiento.value"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 </odoo>

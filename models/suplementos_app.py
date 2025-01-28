@@ -30,3 +30,5 @@ class Suplemento(models.Model):
 
     # Campos relacionados (por ejemplo, relación con proveedores)
     proveedor_id = fields.Many2one('res.partner', string='Proveedor', help='Proveedor del suplemento')
+
+    imagen = fields.Binary(string='Imagen')
