@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',  # Permisos de acceso
         # Aquí irán los archivos XML de vistas y datos más adelante
+        'views/view_suplemento.xml',
     ],
     'installable': True,
     'application': True,

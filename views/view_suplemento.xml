@@ -1,0 +1,35 @@
+<odoo>
+    <menuitem id="menu_suplementos_principal" name="Suplementación" sequence="10"/>
+
+    <record id="action_suplemento_model" model="ir.actions.act_window">
+        <field name="name">Suplementos</field>
+        <field name="res_model">suplemento.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Submenú -->
+    <menuitem id="menu_suplemento"
+        name="Suplementos"
+        parent="menu_suplementos_principal"
+        action="action_suplemento_model"
+        sequence="20"/>
+
+    <!--Vista árbol-->
+
+    <record id="view_suplementos_tree" model="ir.ui.view">
+        <field name="name">suplementos.tree</field>
+        <field name="model">suplemento.model</field>
+        <field name="arch" type="xml">
+            <tree string="Suplementos">
+                <field name="codigo"/>
+                <field name="name"/>
+                <field name="marca"/>
+                <field name="fecha_vencimiento" widget="date"/>
+                <field name="precio" widget="monetary"/>
+                <field name="stock"/>
+                <field name="tipo"/>
+                <field name="peso"/>
+                <field name="es_organico" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
