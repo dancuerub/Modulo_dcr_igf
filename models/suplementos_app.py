@@ -10,7 +10,8 @@ class Suplemento(models.Model):
     codigo = fields.Char('Código de producto', required=True)
     fecha_fabricacion = fields.Date('Fecha de fabricación')
     fecha_vencimiento = fields.Date('Fecha de vencimiento')
-    precio = fields.Float('Precio', required=True)
+    precio_venta = fields.Float('Precio Venta', required=True)
+    precio_compra = fields.Float('Precio Compra', required=True)
     stock = fields.Integer('Stock disponible', required=True)
     tipo = fields.Selection(
         string='Tipo de suplemento',
@@ -32,3 +33,20 @@ class Suplemento(models.Model):
     proveedor_id = fields.Many2one('res.partner', string='Proveedor', help='Proveedor del suplemento')
 
     imagen = fields.Binary(string='Imagen')
+
+    # Nuevos campos nutricionales
+    dosis_recomendada = fields.Char('Dosis Recomendada', help='Cantidad recomendada por día')
+    valor_energetico = fields.Float('Valor Energético (kcal)', help='Cantidad de energía en kilocalorías')
+    grasas = fields.Float('Grasas (g)', help='Cantidad de grasas en gramos')
+    hidratos_carbono = fields.Float('Hidratos de Carbono (g)', help='Cantidad de carbohidratos en gramos')
+    proteinas = fields.Float('Proteínas (g)', help='Cantidad de proteínas en gramos')
+    sal = fields.Float('Sal (g)', help='Cantidad de sal en gramos')
+
+    # Selección de vitaminas (muchos a muchos)
+    vitaminas = fields.Many2many(
+        'vitamina.model',
+        'suplemento_vitamina_rel',
+        'suplemento_id',
+        'vitamina_id',
+        string='Vitaminas Contenidas'
+    )

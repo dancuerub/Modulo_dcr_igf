@@ -15,6 +15,9 @@
         # Aquí irán los archivos XML de vistas y datos más adelante
         'views/view_suplemento.xml',
     ],
+    'images': [
+        'static/description/icon.png',
+    ],
     'installable': True,
     'application': True,
     'auto_install': False,
