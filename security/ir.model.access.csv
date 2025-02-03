@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_suplemento_model,access_suplemento_model,model_suplemento_model,,1,1,1,1
 access_vitamina_model,access_vitamina_model,model_vitamina_model,,1,1,1,1
+access_proveedor_model,access_proveedor_model,model_proveedor_model,,1,1,1,1
+access_cliente_model,access_cliente_model,model_cliente_model,,1,1,1,1

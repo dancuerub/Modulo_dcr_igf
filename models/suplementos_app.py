@@ -30,7 +30,7 @@ class Suplemento(models.Model):
     es_apto_vegano = fields.Boolean('¿Apto para veganos?')
 
     # Campos relacionados (por ejemplo, relación con proveedores)
-    proveedor_id = fields.Many2one('res.partner', string='Proveedor', help='Proveedor del suplemento')
+    proveedor_id = fields.Many2one('proveedor.model', string='Proveedor', help='Proveedor del suplemento')
 
     imagen = fields.Binary(string='Imagen')
 

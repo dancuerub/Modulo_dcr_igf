@@ -1,0 +1,65 @@
+<odoo>
+    <!-- Menú Principal de Clientes (bajo Suplementación) -->
+    <menuitem id="menu_clientes" name="Clientes" parent="menu_suplementos_principal" sequence="35"/>
+
+    <!-- Acción de Clientes -->
+    <record id="action_clientes" model="ir.actions.act_window">
+        <field name="name">Clientes</field>
+        <field name="res_model">cliente.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_clientes_search"/>
+    </record>
+
+    <!-- Submenú de Lista de Clientes -->
+    <menuitem id="menu_clientes_action" name="Lista de Clientes" parent="menu_clientes" action="action_clientes" sequence="45"/>
+
+    <!-- Vista de Árbol de Clientes -->
+    <record id="view_clientes_tree" model="ir.ui.view">
+        <field name="name">clientes.tree</field>
+        <field name="model">cliente.model</field>
+        <field name="arch" type="xml">
+            <tree string="Clientes">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="ciudad"/>
+                <field name="pais"/>
+                <field name="activo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario de Clientes -->
+    <record id="view_clientes_form" model="ir.ui.view">
+        <field name="name">clientes.form</field>
+        <field name="model">cliente.model</field>
+        <field name="arch" type="xml">
+            <form string="Cliente">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="direccion"/>
+                        <field name="ciudad"/>
+                        <field name="pais"/>
+                        <field name="activo"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de Búsqueda de Clientes -->
+    <record id="view_clientes_search" model="ir.ui.view">
+        <field name="name">clientes.search</field>
+        <field name="model">cliente.model</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Clientes">
+                <field name="name" string="Nombre Cliente"/>
+                <field name="email" string="Correo"/>
+                <filter name="clientes_activos" string="Activos" domain="[('activo', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

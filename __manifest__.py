@@ -8,12 +8,14 @@
     Permite gestionar inventario, compra y venta de productos nutricionales.
     """,
     'author': 'Daniel Cuenca Rubio e Iker González Fernández',  # Tu nombre
-    'website': 'https://www.nutripertec.com',
+    'website': 'https://github.com/dancuerub/Modulo_dcr_igf',
     'depends': ['base'],  # Dependencia base mínima
     'data': [
         'security/ir.model.access.csv',  # Permisos de acceso
         # Aquí irán los archivos XML de vistas y datos más adelante
         'views/view_suplemento.xml',
+		'views/view_proveedor.xml',
+		'views/view_cliente.xml',
     ],
     'images': [
         'static/description/icon.png',

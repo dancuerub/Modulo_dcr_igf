@@ -17,8 +17,14 @@
     <menuitem id="menu_suplemento"
         name="Stock"
         parent="menu_suplementos_principal"
-        action="action_suplemento_multi_view"
         sequence="20"/>
+        
+    <!--Lista Productos-->
+	<menuitem id="menu_lista_productos" 
+        name="Lista de Productos" 
+        parent="menu_suplemento" 
+        action="action_suplemento_multi_view" 
+        sequence="30"/>
 
     <!-- Vista de búsqueda -->
     <record id="view_suplemento_search" model="ir.ui.view">

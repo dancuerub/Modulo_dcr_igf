@@ -1,0 +1,67 @@
+<odoo>
+    <!-- Menú Principal de Proveedores -->
+    <menuitem id="menu_proveedores" name="Proveedores" parent="menu_suplementos_principal" sequence="30"/>
+
+    <!-- Acción de Proveedores -->
+    <record id="action_proveedores" model="ir.actions.act_window">
+        <field name="name">Proveedores</field>
+        <field name="res_model">proveedor.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_proveedores_search"/>
+    </record>
+
+    <!-- Submenú de Lista de Proveedores -->
+    <menuitem id="menu_proveedores_action" name="Lista de Proveedores" parent="menu_proveedores" action="action_proveedores" sequence="40"/>
+
+    <!-- Vista de Árbol de Proveedores -->
+    <record id="view_proveedores_tree" model="ir.ui.view">
+        <field name="name">proveedores.tree</field>
+        <field name="model">proveedor.model</field>
+        <field name="arch" type="xml">
+            <tree string="Proveedores">
+                <field name="name"/>
+                <field name="contacto"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="ciudad"/>
+                <field name="pais"/>
+                <field name="activo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario de Proveedores -->
+    <record id="view_proveedores_form" model="ir.ui.view">
+        <field name="name">proveedores.form</field>
+        <field name="model">proveedor.model</field>
+        <field name="arch" type="xml">
+            <form string="Proveedor">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="contacto"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="direccion"/>
+                        <field name="ciudad"/>
+                        <field name="pais"/>
+                        <field name="activo"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de Búsqueda de Proveedores -->
+    <record id="view_proveedores_search" model="ir.ui.view">
+        <field name="name">proveedores.search</field>
+        <field name="model">proveedor.model</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Proveedores">
+                <field name="name" string="Nombre Empresa"/>
+                <field name="contacto" string="Contacto"/>
+                <filter name="proveedores_activos" string="Activos" domain="[('activo', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>
