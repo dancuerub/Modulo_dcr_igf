@@ -12,11 +12,16 @@
     'depends': ['base'],  # Dependencia base mínima
     'data': [
         'security/ir.model.access.csv',  # Permisos de acceso
-        # Aquí irán los archivos XML de vistas y datos más adelante
         'views/view_suplemento.xml',
-		'views/view_proveedor.xml',
-		'views/view_cliente.xml',
+        'views/view_proveedor.xml',
+        'views/view_cliente.xml',
+        'views/view_venta.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'suplementos/static/src/css/kanban_styles.css',  # Ruta al archivo CSS para el estilo Kanban
+        ],
+    },
     'images': [
         'static/description/icon.png',
     ],

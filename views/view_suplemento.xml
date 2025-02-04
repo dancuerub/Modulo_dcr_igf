@@ -1,163 +1,146 @@
 <odoo>
-    <menuitem id="menu_suplementos_principal" name="Suplementación" sequence="10"/>
-    <!--
-    <record id="action_suplemento_model" model="ir.actions.act_window">
-        <field name="name">Suplementos</field>
-        <field name="res_model">suplemento.model</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    -->
-    <record id="action_suplemento_multi_view" model="ir.actions.act_window">
-        <field name="name">Stock</field>
-        <field name="res_model">suplemento.model</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="search_view_id" ref="view_suplemento_search"/>
-    </record>
-    <!-- Submenú -->
-    <menuitem id="menu_suplemento"
-        name="Stock"
-        parent="menu_suplementos_principal"
-        sequence="20"/>
+    <data>
+        <menuitem id="menu_suplementos_principal" name="Suplementación" sequence="10"/>
         
-    <!--Lista Productos-->
-	<menuitem id="menu_lista_productos" 
-        name="Lista de Productos" 
-        parent="menu_suplemento" 
-        action="action_suplemento_multi_view" 
-        sequence="30"/>
+        <record id="action_suplemento_multi_view" model="ir.actions.act_window">
+            <field name="name">Stock</field>
+            <field name="res_model">suplemento.model</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="view_suplemento_search"/>
+        </record>
 
-    <!-- Vista de búsqueda -->
-    <record id="view_suplemento_search" model="ir.ui.view">
-        <field name="name">suplemento.search</field>
-        <field name="model">suplemento.model</field>
-        <field name="arch" type="xml">
-            <search string="Buscar Suplementos">
-                <field name="name" string="Nombre"/>
-                <field name="codigo" string="Código"/>
-                <field name="tipo" string="Tipo"/>
-                <field name="marca" string="Marca"/>
-                <field name="proveedor_id" string="Provedor"/>
-                <field name="fecha_vencimiento" string="Fecha de Vencimiento"/>
-                <filter name="filter_organico" string="Es Orgánico" domain="[('es_organico', '=', True)]"/>
-                <filter name="filter_vegano" string="Apto Vegano" domain="[('es_apto_vegano', '=', True)]"/>
-                <filter name="filter_stock_bajo" string="Stock Bajo" domain="[('stock', '&lt;', 10)]"/>
-                <group string="Valores Energéticos">
-                    <field name="valor_energetico"/>
-                    <field name="grasas"/>
-                    <field name="hidratos_carbono"/>
-                </group>
-            </search>
-        </field>
-    </record>
+        <menuitem id="menu_suplemento"
+            name="Stock"
+            parent="menu_suplementos_principal"
+            sequence="20"/>
+            
+        <menuitem id="menu_lista_productos" 
+            name="Lista de Productos" 
+            parent="menu_suplemento" 
+            action="action_suplemento_multi_view" 
+            sequence="30"/>
 
-    <!--Vista árbol-->
+        <record id="view_suplemento_search" model="ir.ui.view">
+            <field name="name">suplemento.search</field>
+            <field name="model">suplemento.model</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Suplementos">
+                    <field name="name" string="Nombre"/>
+                    <field name="codigo" string="Código"/>
+                    <field name="tipo" string="Tipo"/>
+                    <field name="marca" string="Marca"/>
+                    <field name="proveedor_id" string="Proveedor"/>
+                    <field name="fecha_vencimiento" string="Fecha de Vencimiento"/>
+                    <filter name="filter_organico" string="Es Orgánico" domain="[('es_organico', '=', True)]"/>
+                    <filter name="filter_vegano" string="Apto Vegano" domain="[('es_apto_vegano', '=', True)]"/>
+                    <filter name="filter_stock_bajo" string="Stock Bajo" domain="[('stock', '&lt;', 10)]"/>
+                    <group string="Valores Energéticos">
+                        <field name="valor_energetico"/>
+                        <field name="grasas"/>
+                        <field name="hidratos_carbono"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
-    <record id="view_suplementos_tree" model="ir.ui.view">
-        <field name="name">suplementos.tree</field>
-        <field name="model">suplemento.model</field>
-        <field name="arch" type="xml">
-            <tree string="Suplementos">
-                <field name="codigo"/>
-                <field name="name"/>
-                <field name="marca"/>
-                <field name="fecha_vencimiento" widget="date"/>
-                <field name="precio_venta" widget="monetary"/>
-                <field name="precio_compra" widget="monetary"/>
-                <field name="stock"/>
-                <field name="tipo"/>
-                <field name="peso"/>
-            </tree>
-        </field>
-    </record>
+        <record id="view_suplementos_tree" model="ir.ui.view">
+            <field name="name">suplementos.tree</field>
+            <field name="model">suplemento.model</field>
+            <field name="arch" type="xml">
+                <tree string="Suplementos">
+                    <field name="codigo"/>
+                    <field name="name"/>
+                    <field name="marca"/>
+                    <field name="fecha_vencimiento" widget="date"/>
+                    <field name="precio_venta" widget="monetary"/>
+                    <field name="precio_compra" widget="monetary"/>
+                    <field name="stock"/>
+                    <field name="tipo"/>
+                    <field name="peso"/>
+                </tree>
+            </field>
+        </record>
 
-    <record id="view_suplemento_kanban" model="ir.ui.view">
-        <field name="name">suplemento.kanban</field>
-        <field name="model">suplemento.model</field>
-        <field name="arch" type="xml">
-            <kanban class="o_kanban_small_column">
-                <field name="name"/>
-                <field name="imagen"/>
-                <field name="precio_venta"/>
-                <field name="fecha_vencimiento"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
-                            <div class="o_kanban_image">
-                                <field name="imagen" widget="image" class="img-fluid"/>
+        <record id="view_suplemento_kanban" model="ir.ui.view">
+            <field name="name">suplemento.kanban</field>
+            <field name="model">suplemento.model</field>
+            <field name="arch" type="xml">
+                <kanban class="custom-kanban-hover">
+                    <field name="name"/>
+                    <field name="imagen"/>
+                    <field name="precio_venta"/>
+                    <field name="fecha_vencimiento"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click kanban-card-hover">
+                                <div class="o_kanban_image">
+                                    <field name="imagen" widget="image" class="img-fluid"/>
+                                </div>
+                                <div class="o_kanban_details">
+                                    <ul>
+                                        <li><strong t-esc="record.name.value"/></li>
+                                        <li>Precio Venta: <span t-esc="record.precio_venta.value"/> €</li>
+                                        <li>Fecha Vencimiento: <span t-esc="record.fecha_vencimiento.value"/></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="o_kanban_details">
-                                <ul>
-                                    <li><strong t-esc="record.name.value"/></li>
-                                    <li>Precio Venta: <span t-esc="record.precio_venta.value"/> €</li>
-                                    <li>Fecha Vencimiento: <span t-esc="record.fecha_vencimiento.value"/></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
 
-    <record id="view_suplemento_form" model="ir.ui.view">
-        <field name="name">suplemento.form</field>
-        <field name="model">suplemento.model</field>
-        <field name="arch" type="xml">
-            <form string="Gestión de Suplementos">
-                <sheet>
-                    <group>
-                        <!-- Primera sección: Datos generales -->
+        <record id="view_suplemento_form" model="ir.ui.view">
+            <field name="name">suplemento.form</field>
+            <field name="model">suplemento.model</field>
+            <field name="arch" type="xml">
+                <form string="Gestión de Suplementos">
+                    <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="codigo"/>
-                            <field name="marca"/>
-                            <field name="tipo"/>
-                            <field name="descripcion"/>
-                        </group>
-
-                        <group>
-                            <field name="fecha_fabricacion"/>
-                            <field name="fecha_vencimiento"/>
-                            <field name="precio_venta"/>
-                            <field name="precio_compra"/>
-                            <field name="stock"/>
-                        </group>
-                    </group>
-
-                    <group>
-                        <group>
-                            <field name="es_organico"/>
-                            <field name="es_apto_vegano"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="codigo"/>
+                                <field name="marca"/>
+                                <field name="tipo"/>
+                                <field name="descripcion"/>
+                            </group>
+                            <group>
+                                <field name="fecha_fabricacion"/>
+                                <field name="fecha_vencimiento"/>
+                                <field name="precio_venta"/>
+                                <field name="precio_compra"/>
+                                <field name="stock"/>
+                            </group>
                         </group>
                         <group>
-                            <field name="proveedor_id"/>
-                            <field name="imagen"/>
+                            <group>
+                                <field name="es_organico"/>
+                                <field name="es_apto_vegano"/>
+                            </group>
+                            <group>
+                                <field name="proveedor_id"/>
+                                <field name="imagen"/>
+                            </group>
                         </group>
-                    </group>
-
-                    <!-- Línea divisoria para valores energéticos -->
-                    <separator string="Valores Energéticos (por 100g)" colspan="2"/>
-
-                    <group>
+                        <separator string="Valores Energéticos (por 100g)" colspan="2"/>
                         <group>
-                            <field name="dosis_recomendada"/>
-                            <field name="valor_energetico"/>
-                            <field name="grasas"/>
+                            <group>
+                                <field name="dosis_recomendada"/>
+                                <field name="valor_energetico"/>
+                                <field name="grasas"/>
+                            </group>
+                            <group>
+                                <field name="hidratos_carbono"/>
+                                <field name="proteinas"/>
+                                <field name="sal"/>
+                            </group>
                         </group>
-
                         <group>
-                            <field name="hidratos_carbono"/>
-                            <field name="proteinas"/>
-                            <field name="sal"/>
+                            <field name="vitaminas" widget="many2many_tags"/>
                         </group>
-                    </group>
-
-                    <!-- Selección de vitaminas -->
-                    <group>
-                        <field name="vitaminas" widget="many2many_tags"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
 </odoo>

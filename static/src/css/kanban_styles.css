@@ -1,0 +1,28 @@
+.kanban-card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.kanban-card-hover:hover {
+    transform: scale(1.05); /* Zoom suave */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más marcada */
+    background-color: #f5f5f5; /* Cambio sutil de color */
+}
+
+.o_kanban_image {
+    position: relative;
+    overflow: hidden;
+}
+
+.o_kanban_image img {
+    transition: transform 0.3s ease;
+    width: 100%; /* Ajusta el tamaño de la imagen */
+    height: auto;
+}
+
+.o_kanban_image:hover img {
+    transform: scale(1.2); /* Aumenta la imagen como lupa */
+}
