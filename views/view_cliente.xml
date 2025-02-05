@@ -1,4 +1,16 @@
 <odoo>
+    <!-- Vista de Búsqueda de Clientes -->
+    <record id="view_clientes_search" model="ir.ui.view">
+        <field name="name">clientes.search</field>
+        <field name="model">cliente.model</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Clientes">
+                <field name="name" string="Nombre Cliente"/>
+                <field name="email" string="Correo"/>
+                <filter name="clientes_activos" string="Activos" domain="[('activo', '=', True)]"/>
+            </search>
+        </field>
+    </record>
     <!-- Menú Principal de Clientes (bajo Suplementación) -->
     <menuitem id="menu_clientes" name="Clientes" parent="menu_suplementos_principal" sequence="35"/>
 
@@ -47,19 +59,6 @@
                     </group>
                 </sheet>
             </form>
-        </field>
-    </record>
-
-    <!-- Vista de Búsqueda de Clientes -->
-    <record id="view_clientes_search" model="ir.ui.view">
-        <field name="name">clientes.search</field>
-        <field name="model">cliente.model</field>
-        <field name="arch" type="xml">
-            <search string="Buscar Clientes">
-                <field name="name" string="Nombre Cliente"/>
-                <field name="email" string="Correo"/>
-                <filter name="clientes_activos" string="Activos" domain="[('activo', '=', True)]"/>
-            </search>
         </field>
     </record>
 </odoo>

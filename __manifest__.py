@@ -18,7 +18,7 @@
         'views/view_venta.xml',
     ],
     'assets': {
-        'web.assets_frontend': [
+        'web.assets_backend': [
             'suplementos/static/src/css/kanban_styles.css',  # Ruta al archivo CSS para el estilo Kanban
         ],
     },

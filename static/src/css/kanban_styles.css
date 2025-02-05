@@ -1,28 +1,67 @@
-.kanban-card-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Estilo para asegurarnos que el contenedor principal ocupe todo el espacio */
+.suplemento-kanban-view .o_kanban_record {
+    width: 100% !important;  /* Forzar que ocupe el 100% del espacio */
+    max-width: 1200px !important; /* Ajusta este valor si es necesario */
+    flex: 1 0 auto !important;  /* Evita que se reduzca de tamaño */
+}
+/* Estilo general de la tarjeta en la vista de Suplementos */
+.suplemento-kanban-view .kanban-card-hover {
     background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 8px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
+    display: flex;
+    align-items: center;
+    width: 100%;  /* Aseguramos que ocupe el 100% del contenedor */
+    max-width: 400px;  /* Tamaño máximo de la tarjeta */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Contenedor de la vista Kanban */
+.suplemento-kanban-view .oe_kanban_view .oe_kanban_global_click {
+    width: 100% !important;
+}
+/* Efecto hover solo para la vista de Suplementos */
+.suplemento-kanban-view .kanban-card-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    border-color: #bbb;
+    cursor: pointer;
 }
 
-.kanban-card-hover:hover {
-    transform: scale(1.05); /* Zoom suave */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más marcada */
-    background-color: #f5f5f5; /* Cambio sutil de color */
+/* Diseño horizontal en la vista de Suplementos */
+.suplemento-kanban-view .kanban-content {
+    display: flex;
+    align-items: center;
 }
 
-.o_kanban_image {
-    position: relative;
+/* Imagen a la izquierda solo para Suplementos */
+.suplemento-kanban-view .kanban-image {
+    width: 120px;
+    height: 90%;
     overflow: hidden;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.o_kanban_image img {
-    transition: transform 0.3s ease;
-    width: 100%; /* Ajusta el tamaño de la imagen */
-    height: auto;
+.suplemento-kanban-view .o_kanban_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
-.o_kanban_image:hover img {
-    transform: scale(1.2); /* Aumenta la imagen como lupa */
+/* Detalles de la tarjeta del suplemento */
+.suplemento-kanban-view .kanban-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+    color: #333;
+}
+.suplemento-kanban-view .kanban-details strong {
+    font-size: 14px;
+    color: #2c3e50;
 }

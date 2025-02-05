@@ -1,4 +1,16 @@
 <odoo>
+    <!-- Vista de Búsqueda de Proveedores -->
+    <record id="view_proveedores_search" model="ir.ui.view">
+        <field name="name">proveedores.search</field>
+        <field name="model">proveedor.model</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Proveedores">
+                <field name="name" string="Nombre Empresa"/>
+                <field name="contacto" string="Contacto"/>
+                <filter name="proveedores_activos" string="Activos" domain="[('activo', '=', True)]"/>
+            </search>
+        </field>
+    </record>
     <!-- Menú Principal de Proveedores -->
     <menuitem id="menu_proveedores" name="Proveedores" parent="menu_suplementos_principal" sequence="30"/>
 
@@ -49,19 +61,6 @@
                     </group>
                 </sheet>
             </form>
-        </field>
-    </record>
-
-    <!-- Vista de Búsqueda de Proveedores -->
-    <record id="view_proveedores_search" model="ir.ui.view">
-        <field name="name">proveedores.search</field>
-        <field name="model">proveedor.model</field>
-        <field name="arch" type="xml">
-            <search string="Buscar Proveedores">
-                <field name="name" string="Nombre Empresa"/>
-                <field name="contacto" string="Contacto"/>
-                <filter name="proveedores_activos" string="Activos" domain="[('activo', '=', True)]"/>
-            </search>
         </field>
     </record>
 </odoo>
