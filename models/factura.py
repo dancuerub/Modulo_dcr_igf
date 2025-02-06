@@ -9,12 +9,7 @@ class Factura(models.Model):
     cliente_id = fields.Many2one("cliente.model", string="Cliente", required=True)
     fecha_factura = fields.Date("Fecha de Factura", default=fields.Date.context_today)
     total = fields.Float("Total", compute="_calcular_total", store=True)
-    estado = fields.Selection([
-        ("borrador", "Borrador"),
-        ("pagado", "Pagado"),
-        ("cancelado", "Cancelado"),
-    ], string="Estado", default="borrador")
-    lineas_factura = fields.One2many("facturalinea.model", "factura_id", string="Líneas de Factura")
+    lineas_factura = fields.One2many("facturalinea.model", "factura_id", readonly=True, string="Líneas de Factura")
 
     @api.depends("lineas_factura.subtotal")
     def _calcular_total(self):
@@ -27,10 +22,6 @@ class Factura(models.Model):
             vals['name'] = self.env['ir.sequence'].next_by_code('factura.model') or 'New'
         return super(Factura, self).create(vals)
 
-    def action_pagar(self):
-        """Marca la factura como pagada"""
-        self.write({"estado": "pagado"})
-
-    def action_cancelar(self):
-        """Cancela la factura"""
-        self.write({"estado": "cancelado"})
+    def action_imprimir_factura(self):
+        """Genera y descarga la factura en PDF."""
+        return self.env.ref('suplementos.action_reporte_factura').report_action(self)

@@ -57,7 +57,6 @@
 				<field name="precio_compra" widget="monetary"/>
 				<field name="stock"/>
 				<field name="tipo"/>
-				<field name="peso"/>
 			</tree>
 		</field>
 	</record>

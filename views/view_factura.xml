@@ -8,7 +8,6 @@
                 <field name="cliente_id"/>
                 <field name="fecha_factura"/>
                 <field name="total"/>
-                <field name="estado"/>
             </tree>
         </field>
     </record>
@@ -18,6 +17,9 @@
         <field name="model">factura.model</field>
         <field name="arch" type="xml">
             <form string="Factura">
+                <header>
+                    <button name="action_imprimir_factura" type="object" string="Imprimir Factura" class="btn-primary"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>
@@ -25,7 +27,6 @@
                         <field name="cliente_id"/>
                         <field name="fecha_factura"/>
                         <field name="total" readonly="1"/>
-                        <field name="estado"/>
                     </group>
                     <notebook>
                         <page string="Líneas de Factura">
@@ -39,16 +40,20 @@
                             </field>
                         </page>
                     </notebook>
-                    <footer>
-                        <button name="action_pagar" type="object" string="Marcar como Pagado" class="btn-primary"
-                                attrs="{'invisible': [('estado', '!=', 'borrador')]}"/>
-                        <button name="action_cancelar" type="object" string="Cancelar Factura" class="btn-danger"
-                                attrs="{'invisible': [('estado', '!=', 'borrador')]}"/>
-                    </footer>
                 </sheet>
             </form>
         </field>
     </record>
+
+    <report 
+        id="action_reporte_factura" 
+        model="factura.model" 
+        string="Factura de Venta" 
+        report_type="qweb-pdf" 
+        name="suplementos.reporte_factura" 
+        file="suplementos.reporte_factura" 
+        print_report_name="'Factura - %s' % (object.name)"
+    />
 
     <menuitem id="menu_facturas" name="Facturas" parent="menu_ventas" sequence="70"/>
     <record id="action_facturas" model="ir.actions.act_window">

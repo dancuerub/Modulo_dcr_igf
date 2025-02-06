@@ -18,6 +18,7 @@
         'views/view_venta.xml',
         'views/view_factura.xml',
         'data/data.xml',
+        'views/report_factura.xml',
     ],
     'assets': {
         'web.assets_backend': [
