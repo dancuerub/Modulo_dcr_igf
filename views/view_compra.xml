@@ -1,0 +1,66 @@
+<odoo>
+    <!-- Vista de lista (tree) de compras -->
+    <record id="view_compra_tree" model="ir.ui.view">
+        <field name="name">compra.tree</field>
+        <field name="model">compra.model</field>
+        <field name="arch" type="xml">
+            <tree string="Compras">
+                <field name="name"/>
+                <field name="proveedor_id"/>
+                <field name="fecha_compra"/>
+                <field name="estado"/>
+                <field name="total"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulario (form) de compras -->
+    <record id="view_compra_form" model="ir.ui.view">
+        <field name="name">compra.form</field>
+        <field name="model">compra.model</field>
+        <field name="arch" type="xml">
+            <form string="Compra">
+				<header>
+					<button name="confirmar_compra" string="Confirmar" type="object" class="btn-primary" attrs="{'invisible': [('estado', '!=', 'borrador')]}"/>
+					<button name="recibir_compra" string="Recibir" type="object" class="btn-success" attrs="{'invisible': [('estado', '!=', 'confirmado')]}"/>
+					<button name="cancelar_compra" string="Cancelar" type="object" class="btn-danger" attrs="{'invisible': [('estado', 'in', ['recibido', 'cancelado'])]}"/>
+				</header>
+					<sheet>
+						<group>
+							<field name="name" readonly="1"/>
+							<field name="proveedor_id"/>
+							<field name="fecha_compra"/>
+							<field name="estado" readonly="1"/>
+						</group>
+
+						<notebook>
+							<page string="Líneas de Compra">
+								<field name="lineas_compra">
+									<tree editable="bottom">
+										<field name="suplemento_id"/>
+										<field name="cantidad"/>
+										<field name="precio_unitario" readonly="1"/>
+										<field name="subtotal" readonly="1"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+
+						<group>
+							<field name="total" readonly="1"/>
+						</group>
+					</sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción y menú para Compras -->
+    <record id="action_compras" model="ir.actions.act_window">
+        <field name="name">Compras</field>
+        <field name="res_model">compra.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_compras" name="Compras" parent="menu_suplementos_principal" sequence="50"/>
+    <menuitem id="menu_compras_action" name="Registro de Compras" parent="menu_compras" action="action_compras" sequence="10"/>
+</odoo>

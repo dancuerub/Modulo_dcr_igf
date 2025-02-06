@@ -6,3 +6,5 @@ from . import venta
 from . import venta_linea
 from . import factura
 from . import facturalinea
+from . import compra
+from . import compra_linea

@@ -18,7 +18,10 @@
         <field name="arch" type="xml">
             <form string="Factura">
                 <header>
-                    <button name="action_imprimir_factura" type="object" string="Imprimir Factura" class="btn-primary"/>
+                    <button name="action_imprimir_factura" 
+                    type="object" 
+                    string="Imprimir Factura" 
+                    class="btn-primary"/>
                 </header>
                 <sheet>
                     <group>
@@ -55,11 +58,10 @@
         print_report_name="'Factura - %s' % (object.name)"
     />
 
-    <menuitem id="menu_facturas" name="Facturas" parent="menu_ventas" sequence="70"/>
+    <menuitem id="menu_facturas" name="Lista de Facturas" parent="menu_ventas" action="action_facturas" sequence="70"/>
     <record id="action_facturas" model="ir.actions.act_window">
         <field name="name">Facturas</field>
         <field name="res_model">factura.model</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_facturas_lista" name="Lista de Facturas" parent="menu_facturas" action="action_facturas" sequence="80"/>
 </odoo>

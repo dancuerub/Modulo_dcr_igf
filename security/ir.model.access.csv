@@ -7,3 +7,5 @@ access_venta_model,access_venta_model,model_venta_model,,1,1,1,1
 access_ventalinea_model,access_ventalinea_model,model_ventalinea_model,,1,1,1,1
 access_factura_model,access_factura_model,model_factura_model,,1,1,1,1
 access_facturalinea_model,access_facturalinea_model,model_facturalinea_model,,1,1,1,1
+access_compra_model,access_compra_model,model_compra_model,,1,1,1,1
+access_compralinea_model,access_compralinea_model,model_compralinea_model,,1,1,1,1

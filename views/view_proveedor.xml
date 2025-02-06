@@ -11,6 +11,7 @@
             </search>
         </field>
     </record>
+
     <!-- Menú Principal de Proveedores -->
     <menuitem id="menu_proveedores" name="Proveedores" parent="menu_suplementos_principal" sequence="30"/>
 
@@ -42,7 +43,7 @@
         </field>
     </record>
 
-    <!-- Vista de Formulario de Proveedores -->
+    <!-- Vista de Formulario de Proveedores con Suplementos Relacionados -->
     <record id="view_proveedores_form" model="ir.ui.view">
         <field name="name">proveedores.form</field>
         <field name="model">proveedor.model</field>
@@ -50,14 +51,73 @@
             <form string="Proveedor">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="contacto"/>
-                        <field name="email"/>
-                        <field name="phone"/>
-                        <field name="direccion"/>
-                        <field name="ciudad"/>
-                        <field name="pais"/>
-                        <field name="activo"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="contacto"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="direccion"/>
+                            <field name="ciudad"/>
+                            <field name="pais"/>
+                            <field name="activo"/>
+                        </group>
+                    </group>
+
+                    <!-- Pestaña para los suplementos que provee este proveedor -->
+                    <notebook>
+                        <page string="Suplementos Suministrados">
+                            <field name="suplementos_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="codigo"/>
+                                    <field name="precio_compra"/>
+                                    <field name="precio_venta"/>
+                                    <field name="stock"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de Lista de Suplementos -->
+    <record id="view_suplementos_tree" model="ir.ui.view">
+        <field name="name">suplementos.tree</field>
+        <field name="model">suplemento.model</field>
+        <field name="arch" type="xml">
+            <tree string="Suplementos">
+                <field name="name"/>
+                <field name="codigo"/>
+                <field name="proveedor_id"/>
+                <field name="precio_compra"/>
+                <field name="precio_venta"/>
+                <field name="stock"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario de Suplementos con Proveedor Relacionado -->
+    <record id="view_suplementos_form" model="ir.ui.view">
+        <field name="name">suplementos.form</field>
+        <field name="model">suplemento.model</field>
+        <field name="arch" type="xml">
+            <form string="Suplemento">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="codigo"/>
+                            <field name="proveedor_id"/>
+                        </group>
+                        <group>
+                            <field name="precio_compra"/>
+                            <field name="precio_venta"/>
+                            <field name="stock"/>
+                        </group>
                     </group>
                 </sheet>
             </form>

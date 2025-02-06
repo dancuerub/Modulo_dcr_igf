@@ -12,3 +12,5 @@ class Proveedor(models.Model):
     ciudad = fields.Char('Ciudad')
     pais = fields.Char('País')
     activo = fields.Boolean('Activo', default=True)
+
+    suplementos_ids = fields.One2many('suplemento.model', 'proveedor_id', string='Suplementos')
