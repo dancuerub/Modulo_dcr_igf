@@ -16,6 +16,8 @@
         'views/view_proveedor.xml',
         'views/view_cliente.xml',
         'views/view_venta.xml',
+        'views/view_factura.xml',
+        'data/data.xml',
     ],
     'assets': {
         'web.assets_backend': [

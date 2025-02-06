@@ -1,0 +1,60 @@
+<odoo>
+    <record id="view_factura_tree" model="ir.ui.view">
+        <field name="name">factura.tree</field>
+        <field name="model">factura.model</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="name"/>
+                <field name="cliente_id"/>
+                <field name="fecha_factura"/>
+                <field name="total"/>
+                <field name="estado"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_factura_form" model="ir.ui.view">
+        <field name="name">factura.form</field>
+        <field name="model">factura.model</field>
+        <field name="arch" type="xml">
+            <form string="Factura">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="venta_id"/>
+                        <field name="cliente_id"/>
+                        <field name="fecha_factura"/>
+                        <field name="total" readonly="1"/>
+                        <field name="estado"/>
+                    </group>
+                    <notebook>
+                        <page string="Líneas de Factura">
+                            <field name="lineas_factura">
+                                <tree editable="bottom">
+                                    <field name="suplemento_id"/>
+                                    <field name="cantidad"/>
+                                    <field name="precio_unitario"/>
+                                    <field name="subtotal" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="action_pagar" type="object" string="Marcar como Pagado" class="btn-primary"
+                                attrs="{'invisible': [('estado', '!=', 'borrador')]}"/>
+                        <button name="action_cancelar" type="object" string="Cancelar Factura" class="btn-danger"
+                                attrs="{'invisible': [('estado', '!=', 'borrador')]}"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_facturas" name="Facturas" parent="menu_ventas" sequence="70"/>
+    <record id="action_facturas" model="ir.actions.act_window">
+        <field name="name">Facturas</field>
+        <field name="res_model">factura.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_facturas_lista" name="Lista de Facturas" parent="menu_facturas" action="action_facturas" sequence="80"/>
+</odoo>

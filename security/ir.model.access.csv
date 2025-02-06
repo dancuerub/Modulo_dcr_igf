@@ -5,3 +5,5 @@ access_proveedor_model,access_proveedor_model,model_proveedor_model,,1,1,1,1
 access_cliente_model,access_cliente_model,model_cliente_model,,1,1,1,1
 access_venta_model,access_venta_model,model_venta_model,,1,1,1,1
 access_ventalinea_model,access_ventalinea_model,model_ventalinea_model,,1,1,1,1
+access_factura_model,access_factura_model,model_factura_model,,1,1,1,1
+access_facturalinea_model,access_facturalinea_model,model_facturalinea_model,,1,1,1,1

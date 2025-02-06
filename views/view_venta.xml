@@ -60,6 +60,7 @@
         <field name="model">venta.model</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="name"/>
                 <field name="cliente_id"/>
                 <field name="fecha_venta"/>
                 <field name="total"/>
