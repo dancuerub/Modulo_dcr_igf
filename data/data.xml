@@ -23,5 +23,13 @@
             <field name="prefix">COM</field>
             <field name="padding">5</field>
         </record>
+
+		<!-- Secuencia para Facturas de Compras -->
+        <record id="seq_factura_compra" model="ir.sequence">
+            <field name="name">Secuencia de Compras</field>
+            <field name="code">facturacompra.model</field>
+            <field name="prefix">FACPR</field>
+            <field name="padding">5</field>
+        </record>
     </data>
 </odoo>

@@ -20,6 +20,8 @@
         'data/data.xml',
         'views/report_factura.xml',
 		'views/view_compra.xml',
+		'views/view_factura_compra.xml',
+		'views/report_factura_compra.xml',
     ],
     'assets': {
         'web.assets_backend': [

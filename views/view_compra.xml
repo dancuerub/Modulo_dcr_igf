@@ -62,5 +62,5 @@
     </record>
 
     <menuitem id="menu_compras" name="Compras" parent="menu_suplementos_principal" sequence="50"/>
-    <menuitem id="menu_compras_action" name="Registro de Compras" parent="menu_compras" action="action_compras" sequence="10"/>
+    <menuitem id="menu_compras_action" name="Lista de Compras" parent="menu_compras" action="action_compras" sequence="10"/>
 </odoo>

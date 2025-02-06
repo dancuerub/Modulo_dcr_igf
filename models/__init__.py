@@ -8,3 +8,5 @@ from . import factura
 from . import facturalinea
 from . import compra
 from . import compra_linea
+from . import facturacompra
+from . import facturacompralinea

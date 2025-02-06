@@ -32,7 +32,7 @@
 	</record>
 
 	<menuitem id="menu_suplemento"
-		name="Stock"
+		name="Productos"
 		parent="menu_suplementos_principal"
 		sequence="20"/>
 		
