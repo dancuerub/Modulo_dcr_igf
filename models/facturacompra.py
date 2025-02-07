@@ -14,7 +14,7 @@ class FacturaCompra(models.Model):
     @api.depends("lineas_factura.subtotal")
     def _calcular_total(self):
         for factura in self:
-            factura.total = sum(linea.subtotal for linea in factura.lineas_factura)
+            factura.total = round(sum(linea.subtotal for linea in factura.lineas_factura), 2)
 
     @api.model
     def create(self, vals):

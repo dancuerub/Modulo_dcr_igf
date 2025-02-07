@@ -24,6 +24,7 @@
 					<button name="confirmar_compra" string="Confirmar" type="object" class="btn-primary" attrs="{'invisible': [('estado', '!=', 'borrador')]}"/>
 					<button name="recibir_compra" string="Recibir" type="object" class="btn-success" attrs="{'invisible': [('estado', '!=', 'confirmado')]}"/>
 					<button name="cancelar_compra" string="Cancelar" type="object" class="btn-danger" attrs="{'invisible': [('estado', 'in', ['recibido', 'cancelado'])]}"/>
+					<button name="borrador_compra" string="Borrador" type="object" class="btn-primary" attrs="{'invisible': [('estado', '!=', 'cancelado')]}"/>
 				</header>
 					<sheet>
 						<group>

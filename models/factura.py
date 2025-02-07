@@ -14,13 +14,13 @@ class Factura(models.Model):
     @api.depends("lineas_factura.subtotal")
     def _calcular_total(self):
         for factura in self:
-            factura.total = sum(linea.subtotal for linea in factura.lineas_factura)
+            factura.total = round(sum(linea.subtotal for linea in factura.lineas_factura), 2)
 
     @api.model
     def create(self, vals):
         if vals.get('name', 'New') == 'New':
             vals['name'] = self.env['ir.sequence'].next_by_code('factura.model') or 'New'
-        return super(FacturaCompra, self).create(vals)
+        return super(Factura, self).create(vals)
 
     def action_imprimir_factura(self):
         """Genera y descarga la factura en PDF."""

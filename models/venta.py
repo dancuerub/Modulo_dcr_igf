@@ -20,7 +20,7 @@ class Venta(models.Model):
     @api.depends('lineas_venta.subtotal')
     def _calcular_total(self):
         for record in self:
-            record.total = sum(linea.subtotal for linea in record.lineas_venta)
+            record.total = round(sum(linea.subtotal for linea in record.lineas_venta), 2)
 
     @api.model
     def create(self, vals):
@@ -31,8 +31,6 @@ class Venta(models.Model):
     def action_confirmar(self):
         """Confirma la venta, reduce stock y genera la factura."""
         for record in self:
-            if record.estado != "borrador":
-                raise UserError("Solo puedes confirmar ventas en estado 'Borrador'.")
 
             # Validar stock
             for linea in record.lineas_venta:
@@ -51,7 +49,6 @@ class Venta(models.Model):
                 "venta_id": record.id,
                 "cliente_id": record.cliente_id.id,
                 "fecha_factura": fields.Date.context_today(self),
-                "estado": "borrador",
                 "lineas_factura": [(0, 0, {
                     "suplemento_id": linea.suplemento_id.id,
                     "cantidad": linea.cantidad,

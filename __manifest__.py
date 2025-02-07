@@ -25,7 +25,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'suplementos/static/src/css/kanban_styles.css',  # Ruta al archivo CSS para el estilo Kanban
+            'suplementos/static/src/css/kanban_styles.css', 
+            'suplementos/static/src/css/custom_styles.css',
         ],
     },
     'images': [

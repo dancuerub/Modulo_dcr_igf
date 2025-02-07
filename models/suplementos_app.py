@@ -29,6 +29,8 @@ class Suplemento(models.Model):
     es_organico = fields.Boolean('¿Es orgánico?')
     es_apto_vegano = fields.Boolean('¿Apto para veganos?')
 
+    active = fields.Boolean(default=True)
+
     # Campos relacionados (por ejemplo, relación con proveedores)
     proveedor_id = fields.Many2one('proveedor.model', string='Proveedor', required=True, help='Proveedor del suplemento')
 
@@ -50,3 +52,20 @@ class Suplemento(models.Model):
         'vitamina_id',
         string='Vitaminas Contenidas'
     )
+
+    def unlink(self):
+        # Mostrar mensaje emergente informando que el producto no se está eliminando
+        for record in self:
+            # Lanzar una notificación informando que no se eliminará
+            record.write({'active': False})
+            
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Acción Cancelada',
+                    'message': 'Este producto no ha sido eliminado, solo archivado.',
+                    'type': 'info',  # Tipo de notificación
+                    'sticky': False,  # Si es True, la notificación no desaparecerá
+                }
+            }

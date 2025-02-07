@@ -13,6 +13,8 @@
 				<filter name="filter_organico" string="Es Orgánico" domain="[('es_organico', '=', True)]"/>
 				<filter name="filter_vegano" string="Apto Vegano" domain="[('es_apto_vegano', '=', True)]"/>
 				<filter name="filter_stock_bajo" string="Stock Bajo" domain="[('stock', '&lt;', 10)]"/>
+				<filter name="active_filter" string="Activos" domain="[('active', '=', True)]" />
+            	<filter name="archived_filter" string="Archivados" domain="[('active', '=', False)]" />
 				<group string="Valores Energéticos">
 					<field name="valor_energetico"/>
 					<field name="grasas"/>
@@ -42,13 +44,12 @@
 		action="action_suplemento_multi_view" 
 		sequence="30"/>
 
-	
-
 	<record id="view_suplementos_tree" model="ir.ui.view">
 		<field name="name">suplementos.tree</field>
 		<field name="model">suplemento.model</field>
 		<field name="arch" type="xml">
 			<tree string="Suplementos">
+				<button string="Eliminar Producto" type="object" name="unlink" class="oe_highlight"/>
 				<field name="codigo"/>
 				<field name="name"/>
 				<field name="marca"/>
@@ -148,7 +149,7 @@
 					</group>
 					<separator string="Imagen" colspan="2"/>
 					<group>
-						<field name="imagen" widget="image" style="max-width:600px; max-height: 600px"/>
+						<field name="imagen" widget="image" class="custom-image" nolabel="1"/>
 					</group>
 				</sheet>
 			</form>

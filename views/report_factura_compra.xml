@@ -26,7 +26,7 @@
                                             <td><t t-esc="linea.suplemento_id.name"/></td>
                                             <td><t t-esc="linea.cantidad"/></td>
                                             <td><t t-esc="linea.precio_unitario"/></td>
-                                            <td><t t-esc="linea.subtotal"/></td>
+                                            <td><t t-esc="'%.2f' % linea.subtotal"/></td>
                                         </tr>
                                     </t>
                                 </t>
@@ -39,7 +39,7 @@
                         </table>
 
                         <div class="text-right">
-                            <p><strong>Total:</strong> <t t-esc="doc.total"/> €</p>
+                            <p><strong>Total:</strong> <t t-esc="'%.2f' % doc.total"/> €</p>
                         </div>
                     </main>
                 </div>

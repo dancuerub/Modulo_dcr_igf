@@ -1,10 +1,19 @@
-/* Estilo para asegurarnos que el contenedor principal ocupe todo el espacio */
-.suplemento-kanban-view .o_kanban_record {
-    width: 100% !important;  /* Forzar que ocupe el 100% del espacio */
-    max-width: 1200px !important; /* Ajusta este valor si es necesario */
-    flex: 1 0 auto !important;  /* Evita que se reduzca de tamaño */
+/* Contenedor principal de la vista Kanban: organiza las tarjetas en fila */
+.suplemento-kanban-view.o_kanban_view {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos bajen si no caben en la fila */
+    gap: 15px; /* Espacio entre tarjetas */
+    justify-content: flex-start; /* Alinea los elementos horizontalmente */
 }
-/* Estilo general de la tarjeta en la vista de Suplementos */
+
+/* Mantener el diseño individual de cada tarjeta */
+.suplemento-kanban-view .o_kanban_record {
+    width: 100%;
+    max-width: 400px; /* Ajusta el ancho de las tarjetas */
+    flex: 0 1 100%; /* Permite que se ajusten sin expandirse demasiado */
+}
+
+/* Mantener el estilo de la tarjeta con hover */
 .suplemento-kanban-view .kanban-card-hover {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -14,15 +23,11 @@
     transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease, border-color 0.5s ease;
     display: flex;
     align-items: center;
-    width: 100%;  /* Aseguramos que ocupe el 100% del contenedor */
-    max-width: 400px;  /* Tamaño máximo de la tarjeta */
+    max-width: 400px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-/* Contenedor de la vista Kanban */
-.suplemento-kanban-view .oe_kanban_view .oe_kanban_global_click {
-    width: 100% !important;
-}
-/* Efecto hover solo para la vista de Suplementos */
+
+/* Mantener el efecto hover */
 .suplemento-kanban-view .kanban-card-hover:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);

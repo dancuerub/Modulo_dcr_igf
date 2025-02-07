@@ -1,0 +1,10 @@
+.custom-image img {
+    max-width: 300px !important;
+    max-height: 300px !important;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}

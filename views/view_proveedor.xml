@@ -68,8 +68,8 @@
                     <!-- Pestaña para los suplementos que provee este proveedor -->
                     <notebook>
                         <page string="Suplementos Suministrados">
-                            <field name="suplementos_ids">
-                                <tree editable="bottom">
+                            <field name="suplementos_ids" readonly="1">
+                                <tree>
                                     <field name="name"/>
                                     <field name="codigo"/>
                                     <field name="precio_compra"/>

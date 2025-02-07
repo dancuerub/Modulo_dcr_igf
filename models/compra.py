@@ -23,7 +23,7 @@ class Compra(models.Model):
     @api.depends('lineas_compra.subtotal')
     def _calcular_total(self):
         for compra in self:
-            compra.total = sum(linea.subtotal for linea in compra.lineas_compra)
+            compra.total = round(sum(linea.subtotal for linea in compra.lineas_compra), 2)
 
     def confirmar_compra(self):
         """ Método para confirmar la compra """
@@ -60,6 +60,11 @@ class Compra(models.Model):
         """ Método para cancelar la compra """
         for compra in self:
             compra.estado = 'cancelado'
+
+    def borrador_compra(self):
+        """ Método para cancelar la compra """
+        for compra in self:
+            compra.estado = 'borrador'
 
     @api.model
     def create(self, vals):
