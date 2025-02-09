@@ -1,10 +1,31 @@
 <odoo>
+	<!-- Vista de búsqueda -->
+    <record id="view_venta_search" model="ir.ui.view">
+        <field name="name">venta.search</field>
+        <field name="model">venta.model</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Ventas">
+                <field name="name" string="Número de Venta"/>
+                <field name="cliente_id" string="Cliente"/>
+                <field name="estado" string="Estado"/>
+                <field name="fecha_venta" string="Fecha de Venta"/>
+
+				<filter name="active_filter" string="Activos" domain="[('active', '=', True)]" />
+            	<filter name="archived_filter" string="Archivados" domain="[('active', '=', False)]" />
+                <filter name="filter_borrador" string="Borradores" domain="[('estado', '=', 'borrador')]"/>
+                <filter name="filter_confirmado" string="Confirmadas" domain="[('estado', '=', 'confirmado')]"/>
+                <filter name="filter_cancelado" string="Canceladas" domain="[('estado', '=', 'cancelado')]"/>
+            </search>
+        </field>
+    </record>
+
     <menuitem id="menu_ventas" name="Ventas" parent="menu_suplementos_principal" sequence="50"/>
 
     <record id="action_ventas" model="ir.actions.act_window">
         <field name="name">Ventas</field>
         <field name="res_model">venta.model</field>
         <field name="view_mode">tree,form</field>
+		<field name="search_view_id" ref="view_venta_search"/>
     </record>
 
     <menuitem id="menu_ventas_lista" name="Lista de Ventas" parent="menu_ventas" action="action_ventas" sequence="60"/>

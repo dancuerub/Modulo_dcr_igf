@@ -17,6 +17,30 @@ class Venta(models.Model):
     lineas_venta = fields.One2many('ventalinea.model', 'venta_id', string="Líneas de Venta")
     factura_id = fields.Many2one('factura.model', string="Factura Generada", readonly=True)
 
+    active = fields.Boolean(default=True)
+
+    def unlink(self):
+        for record in self:
+            if record.active:
+                # Aquí estamos "eliminando" pero en realidad archivando
+                record.write({'active': False})
+
+                # Mostrar mensaje emergente informando que la venta ha sido archivado
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': 'Venta Archivado',
+                        'message': 'La venta no ha sido eliminado, ha sido archivado correctamente.',
+                        'type': 'success',  # Tipo de notificación
+                        'sticky': False,  # Si es True, la notificación no desaparecerá
+                    }
+                }
+
+            else:
+                # Si la venta ya está archivado, lanzamos un error
+                raise UserError('Esta venta ya está archivado.')
+
     @api.depends('lineas_venta.subtotal')
     def _calcular_total(self):
         for record in self:

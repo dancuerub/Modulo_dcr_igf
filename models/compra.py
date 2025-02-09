@@ -20,6 +20,30 @@ class Compra(models.Model):
 
     total = fields.Float('Total', compute='_calcular_total', store=True)
 
+    active = fields.Boolean(default=True)
+
+    def unlink(self):
+        for record in self:
+            if record.active:
+                # Aquí estamos "eliminando" pero en realidad archivando
+                record.write({'active': False})
+
+                # Mostrar mensaje emergente informando que la compra ha sido archivado
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': 'Compra Archivado',
+                        'message': 'La compra no ha sido eliminado, ha sido archivado correctamente.',
+                        'type': 'success',  # Tipo de notificación
+                        'sticky': False,  # Si es True, la notificación no desaparecerá
+                    }
+                }
+
+            else:
+                # Si la compra ya está archivado, lanzamos un error
+                raise UserError('Esta compra ya está archivado.')
+
     @api.depends('lineas_compra.subtotal')
     def _calcular_total(self):
         for compra in self:

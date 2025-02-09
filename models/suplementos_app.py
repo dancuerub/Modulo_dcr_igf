@@ -1,4 +1,5 @@
 from odoo import models, fields
+from odoo.exceptions import UserError
 
 class Suplemento(models.Model):
     _name = "suplemento.model"
@@ -54,18 +55,23 @@ class Suplemento(models.Model):
     )
 
     def unlink(self):
-        # Mostrar mensaje emergente informando que el producto no se está eliminando
         for record in self:
-            # Lanzar una notificación informando que no se eliminará
-            record.write({'active': False})
-            
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': 'Acción Cancelada',
-                    'message': 'Este producto no ha sido eliminado, solo archivado.',
-                    'type': 'info',  # Tipo de notificación
-                    'sticky': False,  # Si es True, la notificación no desaparecerá
+            if record.active:
+                # Aquí estamos "eliminando" pero en realidad archivando
+                record.write({'active': False})
+
+                # Mostrar mensaje emergente informando que el producto ha sido archivado
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': 'Producto Archivado',
+                        'message': 'El producto no ha sido eliminado, ha sido archivado correctamente.',
+                        'type': 'success',  # Tipo de notificación
+                        'sticky': False,  # Si es True, la notificación no desaparecerá
+                    }
                 }
-            }
+
+            else:
+                # Si el producto ya está archivado, lanzamos un error
+                raise UserError('Este producto ya está archivado.')

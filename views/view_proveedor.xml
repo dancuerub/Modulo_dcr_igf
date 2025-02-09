@@ -8,6 +8,8 @@
                 <field name="name" string="Nombre Empresa"/>
                 <field name="contacto" string="Contacto"/>
                 <filter name="proveedores_activos" string="Activos" domain="[('activo', '=', True)]"/>
+				<filter name="active_filter" string="Activos" domain="[('active', '=', True)]" />
+            	<filter name="archived_filter" string="Archivados" domain="[('active', '=', False)]" />
             </search>
         </field>
     </record>

@@ -1,4 +1,25 @@
 <odoo>
+	<!-- Vista de búsqueda -->
+    <record id="view_compra_search" model="ir.ui.view">
+        <field name="name">compra.search</field>
+        <field name="model">compra.model</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Compras">
+                <field name="name" string="Número de Compra"/>
+                <field name="proveedor_id" string="Proveedor"/>
+                <field name="estado" string="Estado"/>
+                <field name="fecha_compra" string="Fecha de Compra"/>
+
+                <!-- Filtros predeterminados -->
+				<filter name="active_filter" string="Activos" domain="[('active', '=', True)]" />
+            	<filter name="archived_filter" string="Archivados" domain="[('active', '=', False)]" />
+                <filter name="filter_borrador" string="Borrador" domain="[('estado', '=', 'borrador')]"/>
+                <filter name="filter_confirmado" string="Confirmado" domain="[('estado', '=', 'confirmado')]"/>
+                <filter name="filter_recibido" string="Recibido" domain="[('estado', '=', 'recibido')]"/>
+                <filter name="filter_cancelado" string="Cancelado" domain="[('estado', '=', 'cancelado')]"/>
+            </search>
+        </field>
+    </record>
     <!-- Vista de lista (tree) de compras -->
     <record id="view_compra_tree" model="ir.ui.view">
         <field name="name">compra.tree</field>
@@ -60,6 +81,7 @@
         <field name="name">Compras</field>
         <field name="res_model">compra.model</field>
         <field name="view_mode">tree,form</field>
+		<field name="search_view_id" ref="view_compra_search"/>
     </record>
 
     <menuitem id="menu_compras" name="Compras" parent="menu_suplementos_principal" sequence="50"/>

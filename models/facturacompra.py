@@ -5,7 +5,7 @@ class FacturaCompra(models.Model):
     _description = "Factura de Compra"
 
     name = fields.Char("Número de Factura", required=True, copy=False, readonly=True, default="New")
-    compra_id = fields.Many2one("compra.model", string="Compra Relacionada", readonly=True, ondelete="cascade")
+    compra_id = fields.Many2one("compra.model", string="Compra Relacionada", readonly=True)
     proveedor_id = fields.Many2one("proveedor.model", string="Proveedor", required=True)
     fecha_factura = fields.Date("Fecha de Factura", default=fields.Date.context_today)
     total = fields.Float("Total", compute="_calcular_total", store=True)

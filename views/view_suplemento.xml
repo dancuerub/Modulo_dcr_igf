@@ -49,7 +49,6 @@
 		<field name="model">suplemento.model</field>
 		<field name="arch" type="xml">
 			<tree string="Suplementos">
-				<button string="Eliminar Producto" type="object" name="unlink" class="oe_highlight"/>
 				<field name="codigo"/>
 				<field name="name"/>
 				<field name="marca"/>
